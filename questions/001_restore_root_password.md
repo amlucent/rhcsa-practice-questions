@@ -15,7 +15,7 @@ and log into the system.
 ### Answer:
 
 * During boot time when GRUB loader screen is presented press *e* key. That will open an editor with current kernel boot options.
-* Find the line starting with ***linux16***. At the end of that line add **rd.break** and press ***Ctrl-x*** to restart the 
+* Find the line starting with ***linux16*** (rhel7) or ***linux*** (rhel8). At the end of that line add **rd.break** and press ***Ctrl-x*** to restart the 
 system with new option.
 * ***For RHCSA8 only*** - You should also remove existing parameters **ro** and **crashkernel=...**.
 * What this actually does is taking You to the target right at the end of the boot stage - before root filesystem is mounted (on /).
@@ -28,7 +28,7 @@ password.
 two commands to be provided:
 ```
  load_policy -i 
- chcon -t shadow_t /etc/shadow
+ restorecon -v /etc/shadow
 ```
 
 * Alternately, create /.autorelabel which will force a relabel on the next boot (and automatically reboot again to apply the fix):
